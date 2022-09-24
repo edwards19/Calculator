@@ -1,0 +1,181 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: radial-gradient(circle, rgba(77, 83, 119, 1) 20%, rgba(129, 137, 159, 1) 100%);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  border: 4px solid black;
+  border-radius: 6px;
+}
+
+.calculator__display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 24px;
+  width: 380px;
+  min-height: 95px;
+  padding: 0.75rem 1rem;
+  border: 1px solid black;
+  background-color: rgba(216, 216, 255, 0.71);
+  margin-bottom: 1px;
+}
+
+.calculator__keys {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "clear clear undo divide"
+    "seven eight nine times"
+    "four five six minus"
+    "one two three plus"
+    "zero decimal equal equal";
+}
+
+.calculator__keys > button {
+  min-height: 95px;
+  border: none;
+  border-radius: 2px;
+  border: 1px solid black;
+  transition: opacity 0.10s;
+}
+
+[data-button-type="number"], [data-button-type="decimal"] {
+  background-color: rgba(206, 206, 249, 0.71);
+  font-size: 20px;
+}
+
+[data-button-type="number"]:active,
+[data-button-type="number"]:focus,
+[data-button-type="decimal"]:active,
+[data-button-type="decimal"]:focus {
+  opacity: 0.7;
+}
+
+[data-button-type="operator"] {
+  background-color: rgb(182, 195, 231);
+  font-size: 24px;
+}
+
+[data-button-type="operator"]:active,
+[data-button-type="operator"]:focus {
+  opacity: 0.7;
+}
+
+[data-button-type="clear"],
+[data-button-type="undo"] {
+  background-color: rgb(216, 206, 240);
+}
+
+[data-button-type="clear"]:active,
+[data-button-type="clear"]:focus,
+[data-button-type="undo"]:active,
+[data-button-type="undo"]:focus {
+  opacity: 0.7;
+}
+
+[data-button-type="equal"] {
+  background-color: rgb(181, 212, 187);
+}
+
+[data-button-type="equal"]:active,
+[data-button-type="equal"]:focus {
+  opacity: 0.7;
+}
+
+
+[data-key="clear"] {
+  grid-area: clear;
+  font-size: 18px;
+}
+
+[data-key="undo"] {
+  grid-area: undo;
+  font-size: 26px;
+}
+
+[data-key="divide"] {
+  grid-area: divide;
+}
+
+[data-key="seven"] {
+  grid-area: seven;
+}
+
+[data-key="eight"] {
+  grid-area: eight;
+}
+
+[data-key="nine"] {
+  grid-area: nine;
+}
+
+[data-key="times"] {
+  grid-area: times;
+}
+
+[data-key="four"] {
+  grid-area: four;
+}
+
+[data-key="five"] {
+  grid-area: five;
+}
+
+[data-key="six"] {
+  grid-area: six;
+}
+
+[data-key="minus"] {
+  grid-area: minus;
+}
+
+[data-key="one"] {
+  grid-area: one;
+}
+
+[data-key="two"] {
+  grid-area: two;
+}
+
+[data-key="three"] {
+  grid-area: three;
+}
+
+[data-key="plus"] {
+  grid-area: plus;
+}
+
+[data-key="zero"] {
+  grid-area: zero;
+}
+
+[data-key="decimal"] {
+  grid-area: decimal;
+}
+
+[data-key="equal"] {
+  grid-area: equal;
+  font-size: 24px;
+}
+
