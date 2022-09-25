@@ -19,15 +19,45 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
     if (previousButtonType === 'operator') {
       display.textContent = key;
     }
+
+    if (previousButtonType === 'equal') {
+      resetCalculator();
+      display.textContent = key;
+    }
   }
 
   if (buttonType === 'decimal') {
     if (!displayValue.includes('.')) {
       display.textContent = displayValue + '.';
     }
+
+    if (previousButtonType === 'equal') {
+      resetCalculator();
+      display.textContent = '0.';
+    }
+
+    if (previousButtonType === 'operator') {
+      display.textContent = '0.';
+    }
   }
 
   if (buttonType === 'operator') {
+    const firstValue = +calculator.dataset.firstValue;
+    const operator = calculator.dataset.operator;
+    const secondValue = +displayValue;
+
+    if (typeof firstValue === 'number' && operator && previousButtonType !== 'operator') {
+      let result;
+      if (operator === 'plus') result = firstValue + secondValue;
+      if (operator === 'minus') result = firstValue - secondValue;
+      if (operator === 'times') result = firstValue * secondValue;
+      if (operator === 'divide') result = firstValue / secondValue;
+
+      display.textContent = result;
+    } else {
+      display.textContent = secondValue * 1;
+    }
+    
     calculator.dataset.firstValue = displayValue;
     calculator.dataset.operator = key;
   }
@@ -35,7 +65,7 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
   if (buttonType === 'equal') {
     const firstValue = +calculator.dataset.firstValue;
     const operator = calculator.dataset.operator;
-    const secondValue = displayValue;
+    const secondValue = +displayValue;
 
     if (typeof firstValue === 'number' && operator) {
       let result;
@@ -44,10 +74,8 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
       if (operator === 'times') result = firstValue * secondValue;
       if (operator === 'divide') result = firstValue / secondValue;
 
-
       display.textContent = result;
-    }
-
+    } 
   }
 
   if (buttonType !== 'clear') {
@@ -77,10 +105,8 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
   calculator.dataset.previousButtonType = buttonType;
 })
 
-//Testing 
-
-// function getDisplayValue() {
-//   document.querySelector('.calculator__display').textContent;
-// }
-
-// console.log(getDisplayValue())
+function resetCalculator() {
+  const reset = document.querySelector('[data-key="clear"]');
+  reset.click();
+  reset.click();
+}
