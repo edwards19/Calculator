@@ -64,5 +64,23 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
     button.textContent = 'AC';
   }
 
+  if (buttonType === 'undo') {
+    if (displayValue !== '0') {
+      const remove = display.textContent.substring(0, display.textContent.length - 1);
+      display.textContent = remove;
+    }
+    if (display.textContent === '') {
+      display.textContent = '0';
+    }
+  }
+
   calculator.dataset.previousButtonType = buttonType;
 })
+
+//Testing 
+
+// function getDisplayValue() {
+//   document.querySelector('.calculator__display').textContent;
+// }
+
+// console.log(getDisplayValue())
