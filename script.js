@@ -54,11 +54,10 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
       if (operator === 'divide') result = firstValue / secondValue;
 
       display.textContent = result;
+      calculator.dataset.firstValue = result;
     } else {
-      display.textContent = secondValue * 1;
+      calculator.dataset.firstValue = displayValue;
     }
-    
-    calculator.dataset.firstValue = displayValue;
     calculator.dataset.operator = key;
   }
 
@@ -116,4 +115,3 @@ function resetCalculator() {
   reset.click();
   reset.click();
 }
-
