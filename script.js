@@ -47,7 +47,21 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
 
       display.textContent = result;
     }
-    
+
+  }
+
+  if (buttonType !== 'clear') {
+    const clearButton = calculator.querySelector('[data-key="clear"]');
+    clearButton.textContent = 'CE';
+  }
+
+  if (buttonType === 'clear') {
+    if (button.textContent === 'AC') {
+      delete calculator.dataset.firstValue;
+      delete calculator.dataset.operator;
+    }
+    display.textContent = '0';
+    button.textContent = 'AC';
   }
 
   calculator.dataset.previousButtonType = buttonType;
