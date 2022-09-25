@@ -32,5 +32,23 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
     calculator.dataset.operator = key;
   }
 
+  if (buttonType === 'equal') {
+    const firstValue = +calculator.dataset.firstValue;
+    const operator = calculator.dataset.operator;
+    const secondValue = displayValue;
+
+    if (typeof firstValue === 'number' && operator) {
+      let result;
+      if (operator === 'plus') result = firstValue + secondValue;
+      if (operator === 'minus') result = firstValue - secondValue;
+      if (operator === 'times') result = firstValue * secondValue;
+      if (operator === 'divide') result = firstValue / secondValue;
+
+
+      display.textContent = result;
+    }
+    
+  }
+
   calculator.dataset.previousButtonType = buttonType;
 })
