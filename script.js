@@ -46,7 +46,11 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
     const operator = calculator.dataset.operator;
     const secondValue = +displayValue;
 
-    if (typeof firstValue === 'number' && operator && previousButtonType !== 'operator') {
+    if (typeof firstValue === 'number' &&
+     operator &&
+     previousButtonType !== 'operator' &&
+     previousButtonType !== 'equal') 
+    {
       let result;
       if (operator === 'plus') result = firstValue + secondValue;
       if (operator === 'minus') result = firstValue - secondValue;
@@ -115,3 +119,4 @@ function resetCalculator() {
   reset.click();
   reset.click();
 }
+
