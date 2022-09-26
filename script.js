@@ -69,8 +69,13 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
     const firstValue = +calculator.dataset.firstValue;
     const operator = calculator.dataset.operator;
     const modifierValue = calculator.dataset.modifierValue;
-    const secondValue = +modifierValue || +displayValue;
-
+    let secondValue; // const secondValue = +modifierValue || +displayValue; - did not work
+    if (previousButtonType === 'equal'){
+      secondValue = +modifierValue;
+    } else {
+      secondValue = +displayValue;
+    }
+    
     if (typeof firstValue === 'number' && operator) {
       let result;
       if (operator === 'plus') result = firstValue + secondValue;
@@ -79,8 +84,8 @@ calculatorButtonsDiv.addEventListener('click', (event) => {
       if (operator === 'divide') result = firstValue / secondValue;
 
       display.textContent = result;
-    calculator.dataset.firstValue = result;
-    calculator.dataset.modifierValue = secondValue;
+      calculator.dataset.firstValue = result;
+      calculator.dataset.modifierValue = secondValue;
     } else {
     display.textContent = secondValue * 1;
     } 
@@ -119,4 +124,3 @@ function resetCalculator() {
   reset.click();
   reset.click();
 }
-
